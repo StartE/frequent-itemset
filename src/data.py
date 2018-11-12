@@ -41,27 +41,33 @@ np.random.shuffle(a)
 print('Shuffle')
 
 
-b = []
+b = [] #with 1,2,3,
+c = [] #only 1,2
 for item in a:
     new_item = []
+
     choice = np.random.choice([True,False],size = 1,replace = False,p=[0.1,0.9])
     if choice[0] == False:
         for v in item:
             new_item.append(v+'3')
+        b.append(new_item)
     else:
         length = len(item)
         ch = np.random.choice( [x for x in range(length)] ,size = 1,replace = False)
-        #print('ch',ch)
         for i,v in enumerate(item):
             if i == ch[0]:
                 new_item.append(v+'1')
             new_item.append(v+'2')
-    b.append(new_item)
+        b.append(new_item)
+        c.append(new_item)
 
 
-"""
-test = pd.read_csv("test.csv")
-print(test['trans'][0])
-"""
-sub_df = pd.DataFrame({"trans":b})
-sub_df.to_csv("test.csv", index=False)
+all_df = pd.DataFrame(b)
+all_df.to_csv("data.csv",header = None, index=False)
+sub_df = pd.DataFrame(c)
+sub_df.to_csv("data_contention.csv",header = None, index=False)
+
+pd_df = pd.DataFrame({"trans":b})
+pd_df.to_csv("data_pd.csv", index=False)
+pd_df_c = pd.DataFrame({"trans":c})
+pd_df_c.to_csv("data_pd_c.csv", index=False)
