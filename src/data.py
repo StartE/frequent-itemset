@@ -71,3 +71,20 @@ pd_df = pd.DataFrame({"trans":b})
 pd_df.to_csv("data_pd.csv", index=False)
 pd_df_c = pd.DataFrame({"trans":c})
 pd_df_c.to_csv("data_pd_c.csv", index=False)
+
+with open('data.txt','w') as out:
+    for trans in b:
+        for index,item in enumerate(trans):
+            if index != len(trans)-1:
+                out.write(str(item)+'\t')
+            else:
+                out.write(str(item))
+        out.write('\n')
+with open('data_c.txt','w') as out:
+    for trans in c:
+        for index,item in enumerate(trans):
+            if index != len(trans)-1:
+                out.write(str(item)+'\t')
+            else:
+                out.write(str(item))
+        out.write('\n')
